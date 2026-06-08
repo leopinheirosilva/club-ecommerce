@@ -51,6 +51,7 @@
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.6.0",
     "eslint-plugin-react": "^7.37.5",
+    "git-commit-msg-linter": "^5.0.8",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.7",
     "prettier-config-standard": "^5.0.0"
