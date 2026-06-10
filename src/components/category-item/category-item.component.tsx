@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 // utilities
 import Category from '../../types/category.types'
 // styles
-import '../category-item/category-item.styles.css'
+import { CategoryItemContainer, CategoryName } from './category-item.styles'
 
 interface CategoryProps {
   category: Category
@@ -10,14 +10,12 @@ interface CategoryProps {
 
 const CategoryItem: FunctionComponent<CategoryProps> = ({ category }) => {
   return (
-    <div
-      className="category-item-container"
-      style={{ backgroundImage: `url('${category.imageUrl}')` }}>
-      <div className="category-name">
+    <CategoryItemContainer backgroundImage={category.imageUrl}>
+      <CategoryName>
         <p>{category.displayName}</p>
         <p>Explorar</p>
-      </div>
-    </div>
+      </CategoryName>
+    </CategoryItemContainer>
   )
 }
 

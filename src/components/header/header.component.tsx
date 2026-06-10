@@ -4,7 +4,6 @@ import {
   HeaderItems,
   HeaderTitle
 } from './header.styles'
-import './header.styles.css'
 import { BsCart3 } from 'react-icons/bs'
 
 const Header = () => {
