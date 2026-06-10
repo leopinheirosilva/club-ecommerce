@@ -3,10 +3,10 @@ import Header from '../../components/header/header.component'
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <Header />
       <Categories />
-    </div>
+    </>
   )
 }
 
