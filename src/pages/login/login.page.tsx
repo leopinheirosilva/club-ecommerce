@@ -64,11 +64,9 @@ const LoginPage = () => {
             <CustomInput
               hasError={!!errors?.password} // boolean
               placeholder="Digite sua senha"
+              type="password"
               {...register('password', {
-                required: true,
-                validate: (value) => {
-                  return validator.isEmail(value)
-                }
+                required: true
               })}
             />
             {errors?.password?.type === 'required' && (
