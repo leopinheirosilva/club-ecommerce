@@ -2,6 +2,8 @@ import { BsGoogle } from 'react-icons/bs'
 import { FiLogIn } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
 import validator from 'validator'
+// utilities
+import { auth } from '../../config/firebase.config'
 // components
 import CustomButton from '../../components/custom-button/custom-button.component'
 import Header from '../../components/header/header.component'
@@ -15,6 +17,11 @@ import {
   LoginInputContainer,
   LoginSubtitle
 } from './login.styles'
+import {
+  AuthError,
+  AuthErrorCodes,
+  signInWithEmailAndPassword
+} from 'firebase/auth'
 
 interface LoginForm {
   email: string
@@ -25,11 +32,26 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors }
   } = useForm<LoginForm>()
 
-  const handleSubmitPress = (data: any) => {
-    console.log({ data })
+  const handleSubmitPress = async (data: LoginForm) => {
+    try {
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      )
+      console.log({ userCredentials })
+    } catch (error) {
+      const _error = error as AuthError
+
+      if (_error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
+        setError('password', { type: 'mismatch' })
+        setError('email', { type: 'notFound' })
+      }
+    }
   }
 
   return (
@@ -63,6 +85,9 @@ const LoginPage = () => {
                 Por favor, insira um e-mail válido
               </InputErrorMessage>
             )}
+            {errors?.email?.type === 'notFound' && (
+              <InputErrorMessage>O e-mail não foi encontrado</InputErrorMessage>
+            )}
           </LoginInputContainer>
           <LoginInputContainer>
             <p>Senha</p>
@@ -76,6 +101,9 @@ const LoginPage = () => {
             />
             {errors?.password?.type === 'required' && (
               <InputErrorMessage>A senha é obrigatória</InputErrorMessage>
+            )}
+            {errors?.password?.type === 'mismatch' && (
+              <InputErrorMessage>Senha inválida</InputErrorMessage>
             )}
           </LoginInputContainer>
           <CustomButton
