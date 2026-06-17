@@ -10,7 +10,7 @@ import {
   signInWithPopup
 } from 'firebase/auth'
 import { UserContext } from '../../contexts/user.context'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // utilities
 import { auth, db, googleProvider } from '../../config/firebase.config'
@@ -19,6 +19,7 @@ import CustomButton from '../../components/custom-button/custom-button.component
 import Header from '../../components/header/header.component'
 import InputErrorMessage from '../../components/input-error-message/input-error-message.component'
 import CustomInput from '../../components/custom-input/custom-input.component'
+import LoadingComponent from '../../components/loading/loading.component'
 // styles
 import {
   LoginContainer,
@@ -41,6 +42,8 @@ const LoginPage = () => {
     formState: { errors }
   } = useForm<LoginForm>()
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const { isAuthenticated } = useContext(UserContext)
 
   const navigate = useNavigate()
@@ -53,6 +56,7 @@ const LoginPage = () => {
 
   const handleSubmitPress = async (data: LoginForm) => {
     try {
+      setIsLoading(true)
       const userCredentials = await signInWithEmailAndPassword(
         auth,
         data.email,
@@ -66,11 +70,14 @@ const LoginPage = () => {
         setError('password', { type: 'mismatch' })
         setError('email', { type: 'notFound' })
       }
+    } finally {
+      setIsLoading(false)
     }
   }
 
   const handleSignInWithGooglePress = async () => {
     try {
+      setIsLoading(true)
       const userCredentials = await signInWithPopup(auth, googleProvider)
       const querySnapshot = await getDocs(
         query(
@@ -93,12 +100,16 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.log({ error })
+    } finally {
+      setIsLoading(false)
     }
   }
 
   return (
     <>
       <Header />
+
+      {isLoading && <LoadingComponent />}
 
       <LoginContainer>
         <LoginContent>
