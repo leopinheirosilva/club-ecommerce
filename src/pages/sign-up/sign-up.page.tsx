@@ -7,6 +7,9 @@ import {
   AuthErrorCodes
 } from 'firebase/auth'
 import { addDoc, collection } from 'firebase/firestore'
+import { useContext, useEffect } from 'react'
+import { UserContext } from '../../contexts/user.context'
+import { useNavigate } from 'react-router-dom'
 // utilities
 import { auth, db } from '../../config/firebase.config'
 // components
@@ -38,6 +41,16 @@ const SignUpPage = () => {
     setError,
     formState: { errors }
   } = useForm<SignUpForm>()
+
+  const { isAuthenticated } = useContext(UserContext)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/')
+    }
+  }, [isAuthenticated])
 
   const watchPassword = watch('password')
 
