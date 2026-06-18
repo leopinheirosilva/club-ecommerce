@@ -3,6 +3,8 @@ import { FunctionComponent, useContext, useEffect } from 'react'
 import { CategoryContext } from '../../contexts/category.context'
 // styles
 import { Container } from './categories-overview.styles'
+// components
+import CategoryOverview from '../category-overview/category-overview.component'
 
 const CategoriesOverview: FunctionComponent = () => {
   const { categories, fetchCategories } = useContext(CategoryContext)
@@ -15,7 +17,7 @@ const CategoriesOverview: FunctionComponent = () => {
   return (
     <Container>
       {categories.map((category) => (
-        <p key={category.id}>{category.displayName}</p>
+        <CategoryOverview key={category.id} category={category} />
       ))}
     </Container>
   )
