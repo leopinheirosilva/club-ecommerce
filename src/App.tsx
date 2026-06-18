@@ -2,15 +2,17 @@ import { FunctionComponent, useContext, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
+// components
+import LoadingComponent from './components/loading/loading.component'
 // pages
 import HomePage from './pages/home/home.page'
 import LoginPage from './pages/login/login.page'
 import SignUpPage from './pages/sign-up/sign-up.page'
+import ExplorePage from './pages/explore/explore.page'
 // utilities
 import { auth, db } from './config/firebase.config'
 import { UserContext } from './contexts/user.context'
 import { userConverter } from './converters/firestore.converters'
-import LoadingComponent from './components/loading/loading.component'
 
 const App: FunctionComponent = () => {
   const [isInitializing, setIsInitializing] = useState(true)
@@ -45,6 +47,7 @@ const App: FunctionComponent = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/explore" element={<ExplorePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
       </Routes>
