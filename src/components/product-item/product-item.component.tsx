@@ -17,8 +17,8 @@ const ProductItem: FunctionComponent<ProductItemProps> = ({ product }) => {
     <ProductContainer>
       <ProductImage imageUrl={product.imageUrl} />
       <ProductInfo>
-        {product.name}
-        {product.price}
+        <p>{product.name}</p>
+        <p>R${product.price}</p>
       </ProductInfo>
     </ProductContainer>
   )
