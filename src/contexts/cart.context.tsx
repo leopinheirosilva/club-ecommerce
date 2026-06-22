@@ -1,4 +1,5 @@
 import { createContext, FunctionComponent, ReactNode, useState } from 'react'
+// utilities
 import CartProduct from '../types/cart.types'
 
 interface ICartContext {
@@ -7,7 +8,7 @@ interface ICartContext {
   products: CartProduct[]
 }
 
-const CartContext = createContext<ICartContext>({
+export const CartContext = createContext<ICartContext>({
   isVisible: false,
   products: [],
   toggleCart: () => {}

@@ -4,16 +4,17 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 // components
 import LoadingComponent from './components/loading/loading.component'
+import Cart from './components/cart/cart.component'
 // pages
 import HomePage from './pages/home/home.page'
 import LoginPage from './pages/login/login.page'
 import SignUpPage from './pages/sign-up/sign-up.page'
 import ExplorePage from './pages/explore/explore.page'
+import CategoryDetailsPage from './pages/category-details/category-details.page'
 // utilities
 import { auth, db } from './config/firebase.config'
 import { UserContext } from './contexts/user.context'
 import { userConverter } from './converters/firestore.converters'
-import CategoryDetailsPage from './pages/category-details/category-details.page'
 
 const App: FunctionComponent = () => {
   const [isInitializing, setIsInitializing] = useState(true)
@@ -53,6 +54,7 @@ const App: FunctionComponent = () => {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/category/:id" element={<CategoryDetailsPage />} />
       </Routes>
+      <Cart />
     </BrowserRouter>
   )
 }
