@@ -1,10 +1,18 @@
 import { FunctionComponent } from 'react'
-import { LoadingContainer } from './loading.styles'
 import SyncLoader from 'react-spinners/SyncLoader'
+// styles
+import { LoadingContainer } from './loading.styles'
 
-const LoadingComponent: FunctionComponent = () => {
+interface LoadingComponentProps {
+  message?: string
+}
+
+const LoadingComponent: FunctionComponent<LoadingComponentProps> = ({
+  message
+}) => {
   return (
     <LoadingContainer>
+      {message && <p>{message}</p>}
       <SyncLoader size={30} />
     </LoadingContainer>
   )
