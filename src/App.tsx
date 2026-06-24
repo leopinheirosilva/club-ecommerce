@@ -12,6 +12,7 @@ import SignUpPage from './pages/sign-up/sign-up.page'
 import ExplorePage from './pages/explore/explore.page'
 import CategoryDetailsPage from './pages/category-details/category-details.page'
 import CheckoutPage from './pages/checkout/checkout.page'
+import PaymentConfirmationPage from './pages/payment-confirmation/payment-confirmation.page'
 // utilities
 import { auth, db } from './config/firebase.config'
 import { UserContext } from './contexts/user.context'
@@ -63,6 +64,10 @@ const App: FunctionComponent = () => {
               <CheckoutPage />
             </AuthenticationGuard>
           }
+        />
+        <Route
+          path="/payment-confirmation"
+          element={<PaymentConfirmationPage />}
         />
       </Routes>
       <Cart />
