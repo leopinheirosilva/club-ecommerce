@@ -1,6 +1,7 @@
 import { BsGoogle } from 'react-icons/bs'
 import { FiLogIn } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
 import validator from 'validator'
 import {
@@ -9,8 +10,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup
 } from 'firebase/auth'
-import { UserContext } from '../../contexts/user.context'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // utilities
 import { auth, db, googleProvider } from '../../config/firebase.config'
@@ -44,7 +44,7 @@ const LoginPage = () => {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const { isAuthenticated } = useContext(UserContext)
+  const { isAuthenticated } = useSelector((rootReducer: any) => rootReducer.userReducer)
 
   const navigate = useNavigate()
 
