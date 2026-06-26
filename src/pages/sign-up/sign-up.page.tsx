@@ -97,7 +97,7 @@ const SignUpPage = () => {
           <SingUpInputContainer>
             <p>Nome</p>
             <CustomInput
-              hasError={!!errors?.firstName}
+              $hasError={!!errors?.firstName}
               placeholder="Digite seu nome"
               {...register('firstName', {
                 required: true
@@ -110,7 +110,7 @@ const SignUpPage = () => {
           <SingUpInputContainer>
             <p>Sobrenome</p>
             <CustomInput
-              hasError={!!errors?.lastName}
+              $hasError={!!errors?.lastName}
               placeholder="Digite seu sobrenome"
               {...register('lastName', {
                 required: true
@@ -123,7 +123,7 @@ const SignUpPage = () => {
           <SingUpInputContainer>
             <p>E-mail</p>
             <CustomInput
-              hasError={!!errors?.email}
+              $hasError={!!errors?.email}
               placeholder="Digite seu e-mail"
               {...register('email', {
                 required: true,
@@ -149,7 +149,7 @@ const SignUpPage = () => {
           <SingUpInputContainer>
             <p>Senha</p>
             <CustomInput
-              hasError={!!errors?.password}
+              $hasError={!!errors?.password}
               placeholder="Digite sua senha"
               type="password"
               {...register('password', {
@@ -169,7 +169,7 @@ const SignUpPage = () => {
           <SingUpInputContainer>
             <p>Confirmação de Senha</p>
             <CustomInput
-              hasError={!!errors?.confirmPassword}
+              $hasError={!!errors?.confirmPassword}
               placeholder="Digite novamente sua senha"
               type="password"
               {...register('confirmPassword', {
