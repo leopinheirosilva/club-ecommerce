@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 // components
 import LoadingComponent from './components/loading/loading.component'
 import Cart from './components/cart/cart.component'
@@ -17,15 +17,16 @@ import PaymentConfirmationPage from './pages/payment-confirmation/payment-confir
 // utilities
 import { auth, db } from './config/firebase.config'
 import { userConverter } from './converters/firestore.converters'
-import { loginUser, logout } from './store/reducers/user/user.action'
+import { loginUser, logoutUser } from './store/reducers/user/user.action'
+import { useAppSelector } from './hooks/redux.hooks'
 // guards
 import AuthenticationGuard from './guards/authentication.guard'
 
 const App: FunctionComponent = () => {
   const [isInitializing, setIsInitializing] = useState(true)
-  const dispatch = useDispatch()
-  const { isAuthenticated } = useSelector(
-    (rootReducer: any) => rootReducer.userReducer
+  const dispatch = useDispatch<any>()
+  const { isAuthenticated } = useAppSelector(
+    (rootReducer) => rootReducer.userReducer
   )
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const App: FunctionComponent = () => {
       // devemos limpar o contexto (sign out)
       const isSigningOut = isAuthenticated && !user
       if (isSigningOut) {
-        dispatch(logout())
+        dispatch(logoutUser())
         return setIsInitializing(false)
       }
       // se o usuário do firebase estiver logado, e o usuário do contexto for nulo

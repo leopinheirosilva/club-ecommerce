@@ -1,7 +1,6 @@
 import { BsGoogle } from 'react-icons/bs'
 import { FiLogIn } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
-import { useSelector } from 'react-redux'
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore'
 import validator from 'validator'
 import {
@@ -14,6 +13,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 // utilities
 import { auth, db, googleProvider } from '../../config/firebase.config'
+import { useAppSelector } from '../../hooks/redux.hooks'
 // components
 import CustomButton from '../../components/custom-button/custom-button.component'
 import Header from '../../components/header/header.component'
@@ -44,7 +44,9 @@ const LoginPage = () => {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const { isAuthenticated } = useSelector((rootReducer: any) => rootReducer.userReducer)
+  const { isAuthenticated } = useAppSelector(
+    (rootReducer) => rootReducer.userReducer
+  )
 
   const navigate = useNavigate()
 

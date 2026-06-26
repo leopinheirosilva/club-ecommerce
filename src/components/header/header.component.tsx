@@ -6,7 +6,7 @@ import { signOut } from 'firebase/auth'
 // utilities
 import { auth } from '../../config/firebase.config'
 import { CartContext } from '../../contexts/cart.context'
-import { logout } from '../../store/reducers/user/user.action'
+import { logoutUser } from '../../store/reducers/user/user.action'
 // styles
 import {
   HeaderContainer,
@@ -17,7 +17,7 @@ import {
 
 const Header = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
   const { isAuthenticated } = useSelector(
     (rootReducer: any) => rootReducer.userReducer
   )
@@ -40,7 +40,7 @@ const Header = () => {
   }
 
   const handleSignoutClick = () => {
-    dispatch(logout())
+    dispatch(logoutUser())
     signOut(auth)
   }
 
