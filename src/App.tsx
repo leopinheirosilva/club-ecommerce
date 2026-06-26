@@ -17,6 +17,7 @@ import PaymentConfirmationPage from './pages/payment-confirmation/payment-confir
 // utilities
 import { auth, db } from './config/firebase.config'
 import { userConverter } from './converters/firestore.converters'
+import { loginUser, logout } from './store/reducers/user/user.action'
 // guards
 import AuthenticationGuard from './guards/authentication.guard'
 
@@ -33,7 +34,7 @@ const App: FunctionComponent = () => {
       // devemos limpar o contexto (sign out)
       const isSigningOut = isAuthenticated && !user
       if (isSigningOut) {
-        dispatch({ type: 'LOGOUT_USER' })
+        dispatch(logout())
         return setIsInitializing(false)
       }
       // se o usuário do firebase estiver logado, e o usuário do contexto for nulo
@@ -48,7 +49,7 @@ const App: FunctionComponent = () => {
         )
         const userFromFirestore = querySnapshot.docs[0]?.data()
 
-        dispatch({ type: 'LOGIN_USER', payload: userFromFirestore })
+        dispatch(loginUser(userFromFirestore))
 
         return setIsInitializing(false)
       }
