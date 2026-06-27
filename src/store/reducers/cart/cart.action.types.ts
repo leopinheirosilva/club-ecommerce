@@ -1,10 +1,10 @@
 const CartActionTypes = {
-  toggleCart: 'cart/toggle',
-  addProductToCart: 'cart/addProduct',
-  removeProductFromCart: 'cart/removeProduct',
-  increaseCartProductQuantity: 'cart/increaseProductQuantity',
-  decreaseCartProductQuantity: 'cart/decreaseProductQuantity',
-  clearCartProducts: 'cart/clearProducts'
+  toggleCart: 'cart/toggle' as const,
+  addProductToCart: 'cart/addProduct' as const,
+  removeProductFromCart: 'cart/removeProduct' as const,
+  increaseCartProductQuantity: 'cart/increaseProductQuantity' as const,
+  decreaseCartProductQuantity: 'cart/decreaseProductQuantity' as const,
+  clearCartProducts: 'cart/clearProducts' as const
 }
 
 export default CartActionTypes
