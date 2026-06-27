@@ -1,8 +1,10 @@
-import { FunctionComponent, useContext } from 'react'
+// libs
+import { FunctionComponent } from 'react'
 import { BsCartPlus } from 'react-icons/bs'
+import { useDispatch } from 'react-redux'
 // Utilities
 import Product from '../../types/product.types'
-import { CartContext } from '../../contexts/cart.context'
+import { addProductToCart } from '../../store/reducers/cart/cart.action'
 // Components
 import CustomButton from '../custom-button/custom-button.component'
 // Styles
@@ -17,10 +19,10 @@ interface ProductItemProps {
 }
 
 const ProductItem: FunctionComponent<ProductItemProps> = ({ product }) => {
-  const { addProductToCart } = useContext(CartContext)
+  const dispatch = useDispatch()
 
   const handleAddToCartClick = () => {
-    addProductToCart(product)
+    dispatch(addProductToCart(product))
   }
 
   return (
