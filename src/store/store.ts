@@ -26,7 +26,8 @@ const persistedRootReducer: typeof rootReducer = persistReducer(
 // )
 export const store = configureStore({
   reducer: persistedRootReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(logger)
 })
 export const persistedStore = persistStore(store)
 

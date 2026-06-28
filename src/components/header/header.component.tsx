@@ -2,11 +2,12 @@
 import { useNavigate } from 'react-router-dom'
 import { BsCart3 } from 'react-icons/bs'
 import { signOut } from 'firebase/auth'
+import { useDispatch } from 'react-redux'
 // utilities
 import { auth } from '../../config/firebase.config'
 import { logoutUser } from '../../store/toolkit/user/user.slice'
-import { toggleCart } from '../../store/reducers/cart/cart.action'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux.hooks'
+import { toggleCart } from '../../store/toolkit/cart/cart.slice'
+import { useAppSelector } from '../../hooks/redux.hooks'
 import { selecProductsCount } from '../../store/reducers/cart/cart.selectors'
 // styles
 import {
@@ -18,7 +19,7 @@ import {
 
 const Header = () => {
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
   const productsCount = useAppSelector(selecProductsCount)
   const { isAuthenticated } = useAppSelector(
     (rootReducer: any) => rootReducer.userReducer

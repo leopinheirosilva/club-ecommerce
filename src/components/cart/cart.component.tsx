@@ -2,9 +2,10 @@
 import { FunctionComponent } from 'react'
 import { BsCartCheck } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 // utilities
-import { toggleCart } from '../../store/reducers/cart/cart.action'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux.hooks'
+import { toggleCart } from '../../store/toolkit/cart/cart.slice'
+import { useAppSelector } from '../../hooks/redux.hooks'
 import {
   selecProductsCount,
   selectProductsTotalPrice
@@ -22,7 +23,7 @@ import {
 } from './cart.styles'
 
 const Cart: FunctionComponent = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
   const { isVisible, products } = useAppSelector((state) => state.cartReducer)
   const productsTotalPrice = useAppSelector(selectProductsTotalPrice)
   const productsCount = useAppSelector(selecProductsCount)

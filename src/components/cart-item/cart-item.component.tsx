@@ -7,8 +7,7 @@ import {
   decreaseCartProductQuantity,
   increaseCartProductQuantity,
   removeProductFromCart
-} from '../../store/reducers/cart/cart.action'
-import { useAppDispatch } from '../../hooks/redux.hooks'
+} from '../../store/toolkit/cart/cart.slice'
 // styles
 import {
   CartItemContainer,
@@ -17,13 +16,14 @@ import {
   CartItemQuantity,
   RemoveButton
 } from './cart-item.styles'
+import { useDispatch } from 'react-redux'
 
 interface CartItemProps {
   product: CartProduct
 }
 
 const CartItem: FunctionComponent<CartItemProps> = ({ product }) => {
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch()
 
   const handleRemoveClick = () => {
     dispatch(removeProductFromCart(product.id))
