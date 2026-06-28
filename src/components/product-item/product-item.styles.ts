@@ -18,6 +18,10 @@ export const ProductInfo = styled.div`
     font-size: 1rem;
     font-weight: 500;
   }
+
+  .product-price {
+    font-weight: bolder;
+  }
 `
 
 export const ProductImage = styled.div<ProductImageProps>`

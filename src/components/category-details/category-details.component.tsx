@@ -13,10 +13,9 @@ import ProductItem from '../product-item/product-item.component'
 import {
   CategoryTitle,
   Container,
-  IconContainer
+  IconContainer,
+  ProductsContainer
 } from './category-details.styles'
-import { ProductContainer } from '../product-item/product-item.styles'
-
 interface CategoryDetailsProps {
   categoryId: string
 }
@@ -64,11 +63,11 @@ const CategoryDetails: FunctionComponent<CategoryDetailsProps> = ({
         <p>Explorar {category?.displayName}</p>
       </CategoryTitle>
 
-      <ProductContainer>
+      <ProductsContainer>
         {category?.products.map((product) => (
           <ProductItem key={product.id} product={product} />
         ))}
-      </ProductContainer>
+      </ProductsContainer>
     </Container>
   )
 }
