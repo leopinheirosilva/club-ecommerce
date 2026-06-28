@@ -1,3 +1,4 @@
+// libs
 import { FunctionComponent } from 'react'
 import SyncLoader from 'react-spinners/SyncLoader'
 // styles

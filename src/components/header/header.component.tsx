@@ -20,10 +20,10 @@ import {
 const Header = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch<any>()
+  const productsCount = useAppSelector(selecProductsCount)
   const { isAuthenticated } = useAppSelector(
     (rootReducer: any) => rootReducer.userReducer
   )
-  const productsCount = useAppSelector(selecProductsCount)
 
   const handleLoginClick = () => {
     navigate('/login')

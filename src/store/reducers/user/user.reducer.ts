@@ -1,6 +1,6 @@
 import User from '../../../types/user.types'
-import { UserActions } from './user.action'
 import UserActionTypes from './user.action.types'
+import { UserActions } from './user.action'
 
 interface InitialState {
   currentUser: User | null

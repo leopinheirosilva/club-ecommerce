@@ -23,11 +23,11 @@ import {
 } from './cart.styles'
 
 const Cart: FunctionComponent = () => {
-  const { isVisible, products } = useAppSelector((state) => state.cartReducer)
   const dispatch = useDispatch<any>()
-  const navigate = useNavigate()
+  const { isVisible, products } = useAppSelector((state) => state.cartReducer)
   const productsTotalPrice = useAppSelector(selectProductsTotalPrice)
   const productsCount = useAppSelector(selecProductsCount)
+  const navigate = useNavigate()
 
   const handleGoToCheckoutClick = () => {
     navigate('/checkout')

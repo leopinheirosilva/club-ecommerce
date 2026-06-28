@@ -1,9 +1,10 @@
+// libs
 import { FunctionComponent } from 'react'
+import { useNavigate } from 'react-router-dom'
 // utilities
 import Category from '../../types/category.types'
 // styles
 import { CategoryItemContainer, CategoryName } from './category-item.styles'
-import { useNavigate } from 'react-router-dom'
 
 interface CategoryProps {
   category: Category
@@ -11,6 +12,7 @@ interface CategoryProps {
 
 const CategoryItem: FunctionComponent<CategoryProps> = ({ category }) => {
   const navigate = useNavigate()
+
   const handleExploreClick = () => {
     navigate(`/category/${category.id}`)
   }

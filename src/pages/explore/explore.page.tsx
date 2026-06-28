@@ -1,3 +1,4 @@
+// libs
 import { FunctionComponent } from 'react'
 // components
 import Header from '../../components/header/header.component'

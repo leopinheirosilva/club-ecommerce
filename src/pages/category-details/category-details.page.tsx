@@ -1,7 +1,9 @@
+// libs
 import { FunctionComponent } from 'react'
+import { useParams } from 'react-router-dom'
+// components
 import Header from '../../components/header/header.component'
 import CategoryDetails from '../../components/category-details/category-details.component'
-import { useParams } from 'react-router-dom'
 
 const CategoryDetailsPage: FunctionComponent = () => {
   const { id } = useParams()
