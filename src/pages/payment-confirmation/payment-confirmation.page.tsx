@@ -22,7 +22,7 @@ import {
 const PaymentConfirmationPage: FunctionComponent = () => {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
   const status = searchParams.get('success')
   const isCanceled = searchParams.get('canceled') === 'true'
 

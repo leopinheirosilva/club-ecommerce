@@ -23,7 +23,7 @@ interface CartItemProps {
 }
 
 const CartItem: FunctionComponent<CartItemProps> = ({ product }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
 
   const handleRemoveClick = () => {
     dispatch(removeProductFromCart(product.id))

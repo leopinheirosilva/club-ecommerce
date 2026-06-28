@@ -24,7 +24,7 @@ import {
 
 const Cart: FunctionComponent = () => {
   const { isVisible, products } = useAppSelector((state) => state.cartReducer)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
   const navigate = useNavigate()
   const productsTotalPrice = useAppSelector(selectProductsTotalPrice)
   const productsCount = useAppSelector(selecProductsCount)

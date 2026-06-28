@@ -19,7 +19,7 @@ interface ProductItemProps {
 }
 
 const ProductItem: FunctionComponent<ProductItemProps> = ({ product }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<any>()
 
   const handleAddToCartClick = () => {
     dispatch(addProductToCart(product))

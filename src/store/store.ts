@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import logger from 'redux-logger'
 import rootReducer from './root-reducer'
+import { thunk } from 'redux-thunk'
 // @ts-ignore
 import storage from 'redux-persist/lib/storage'
 // @ts-ignore
@@ -22,7 +23,7 @@ const persistedRootReducer: typeof rootReducer = persistReducer(
 export const store = createStore(
   persistedRootReducer,
   undefined,
-  applyMiddleware(logger)
+  applyMiddleware(thunk, logger)
 )
 export const persistedStore = persistStore(store)
 
