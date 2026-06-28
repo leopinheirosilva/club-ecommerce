@@ -3,7 +3,6 @@ import { FunctionComponent, useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { useDispatch } from 'react-redux'
 // components
 import LoadingComponent from './components/loading/loading.component'
 import Cart from './components/cart/cart.component'
@@ -19,14 +18,14 @@ import PaymentConfirmationPage from './pages/payment-confirmation/payment-confir
 import { auth, db } from './config/firebase.config'
 import { userConverter } from './converters/firestore.converters'
 import { loginUser, logoutUser } from './store/reducers/user/user.action'
-import { useAppSelector } from './hooks/redux.hooks'
+import { useAppDispatch, useAppSelector } from './hooks/redux.hooks'
 import { Action } from 'redux'
 // guards
 import AuthenticationGuard from './guards/authentication.guard'
 
 const App: FunctionComponent = () => {
   const [isInitializing, setIsInitializing] = useState(true)
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { isAuthenticated } = useAppSelector(
     (rootReducer) => rootReducer.userReducer
   )
@@ -37,7 +36,7 @@ const App: FunctionComponent = () => {
       // devemos limpar o contexto (sign out)
       const isSigningOut = isAuthenticated && !user
       if (isSigningOut) {
-        dispatch(logoutUser() as Action)
+        dispatch(logoutUser())
         return setIsInitializing(false)
       }
       // se o usuário do firebase estiver logado, e o usuário do contexto for nulo
