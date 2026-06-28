@@ -1,10 +1,10 @@
 // libs
 import { FunctionComponent } from 'react'
 import { BsCartPlus } from 'react-icons/bs'
-import { useDispatch } from 'react-redux'
 // Utilities
 import Product from '../../types/product.types'
 import { addProductToCart } from '../../store/reducers/cart/cart.action'
+import { useAppDispatch } from '../../hooks/redux.hooks'
 // Components
 import CustomButton from '../custom-button/custom-button.component'
 // Styles
@@ -19,7 +19,7 @@ interface ProductItemProps {
 }
 
 const ProductItem: FunctionComponent<ProductItemProps> = ({ product }) => {
-  const dispatch = useDispatch<any>()
+  const dispatch = useAppDispatch()
 
   const handleAddToCartClick = () => {
     dispatch(addProductToCart(product))
@@ -35,7 +35,7 @@ const ProductItem: FunctionComponent<ProductItemProps> = ({ product }) => {
 
       <ProductInfo>
         <p>{product.name}</p>
-        <p className='product-price'>R${product.price}</p>
+        <p className="product-price">R${product.price}</p>
       </ProductInfo>
     </ProductContainer>
   )

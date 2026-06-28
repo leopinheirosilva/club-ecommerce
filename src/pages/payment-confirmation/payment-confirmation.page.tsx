@@ -1,7 +1,6 @@
 // libs
 import { FunctionComponent, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import {
   AiOutlineCheckCircle,
   AiOutlineCloseCircle,
@@ -10,6 +9,7 @@ import {
 // utilities
 import Colors from '../../theme/theme.colors'
 import { clearCartProducts } from '../../store/reducers/cart/cart.action'
+import { useAppDispatch } from '../../hooks/redux.hooks'
 // components
 import Header from '../../components/header/header.component'
 import CustomButton from '../../components/custom-button/custom-button.component'
@@ -22,7 +22,7 @@ import {
 const PaymentConfirmationPage: FunctionComponent = () => {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
-  const dispatch = useDispatch<any>()
+  const dispatch = useAppDispatch()
   const status = searchParams.get('success')
   const isCanceled = searchParams.get('canceled') === 'true'
 
@@ -34,7 +34,7 @@ const PaymentConfirmationPage: FunctionComponent = () => {
     if (status === 'true') {
       dispatch(clearCartProducts())
     }
-  }, [status])
+  }, [dispatch, status])
 
   return (
     <>

@@ -20,12 +20,13 @@ import { auth, db } from './config/firebase.config'
 import { userConverter } from './converters/firestore.converters'
 import { loginUser, logoutUser } from './store/reducers/user/user.action'
 import { useAppSelector } from './hooks/redux.hooks'
+import { Action } from 'redux'
 // guards
 import AuthenticationGuard from './guards/authentication.guard'
 
 const App: FunctionComponent = () => {
   const [isInitializing, setIsInitializing] = useState(true)
-  const dispatch = useDispatch<any>()
+  const dispatch = useDispatch()
   const { isAuthenticated } = useAppSelector(
     (rootReducer) => rootReducer.userReducer
   )
@@ -36,7 +37,7 @@ const App: FunctionComponent = () => {
       // devemos limpar o contexto (sign out)
       const isSigningOut = isAuthenticated && !user
       if (isSigningOut) {
-        dispatch(logoutUser())
+        dispatch(logoutUser() as Action)
         return setIsInitializing(false)
       }
       // se o usuário do firebase estiver logado, e o usuário do contexto for nulo
@@ -51,7 +52,7 @@ const App: FunctionComponent = () => {
         )
         const userFromFirestore = querySnapshot.docs[0]?.data()
 
-        dispatch(loginUser(userFromFirestore))
+        dispatch(loginUser(userFromFirestore) as Action)
 
         return setIsInitializing(false)
       }
