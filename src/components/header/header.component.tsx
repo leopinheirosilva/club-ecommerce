@@ -4,7 +4,7 @@ import { BsCart3 } from 'react-icons/bs'
 import { signOut } from 'firebase/auth'
 // utilities
 import { auth } from '../../config/firebase.config'
-import { logoutUser } from '../../store/reducers/user/user.action'
+import { logoutUser } from '../../store/toolkit/user/user.slice'
 import { toggleCart } from '../../store/reducers/cart/cart.action'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux.hooks'
 import { selecProductsCount } from '../../store/reducers/cart/cart.selectors'
