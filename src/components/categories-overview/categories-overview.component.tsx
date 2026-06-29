@@ -1,8 +1,10 @@
 // libs
 import { FunctionComponent, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 // utilities
-import { fetchCategories } from '../../store/reducers/category/category.action'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux.hooks'
+import { fetchCategories } from '../../store/toolkit/category/category.slice'
+import { useAppSelector } from '../../hooks/redux.hooks'
+import Category from '../../types/category.types'
 // components
 import CategoryOverview from '../category-overview/category-overview.component'
 import LoadingComponent from '../loading/loading.component'
@@ -10,7 +12,7 @@ import LoadingComponent from '../loading/loading.component'
 import { Container } from './categories-overview.styles'
 
 const CategoriesOverview: FunctionComponent = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useDispatch<any>()
   const { categories, isLoading } = useAppSelector(
     (state) => state.categoryReducer
   )
@@ -24,7 +26,7 @@ const CategoriesOverview: FunctionComponent = () => {
   if (isLoading) return <LoadingComponent />
   return (
     <Container>
-      {categories.map((category) => (
+      {categories.map((category: Category) => (
         <CategoryOverview key={category.id} category={category} />
       ))}
     </Container>

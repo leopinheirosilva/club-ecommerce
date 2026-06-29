@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
 import rootReducer from './root-reducer'
+import type { Reducer } from 'redux'
 // @ts-ignore
 import storage from 'redux-persist/lib/storage'
 // @ts-ignore
@@ -14,10 +15,7 @@ const persistConfig = {
   whitelist: ['cartReducer']
 }
 
-const persistedRootReducer: typeof rootReducer = persistReducer(
-  persistConfig,
-  rootReducer
-)
+const persistedRootReducer: Reducer = persistReducer(persistConfig, rootReducer)
 
 // export const store = createStore(
 //   persistedRootReducer,
@@ -26,8 +24,7 @@ const persistedRootReducer: typeof rootReducer = persistReducer(
 // )
 export const store = configureStore({
   reducer: persistedRootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(logger)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
 })
 export const persistedStore = persistStore(store)
 

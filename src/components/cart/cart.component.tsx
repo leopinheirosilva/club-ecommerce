@@ -21,6 +21,7 @@ import {
   CartTitle,
   CartTotal
 } from './cart.styles'
+import CartProduct from '../../types/cart.types'
 
 const Cart: FunctionComponent = () => {
   const dispatch = useDispatch()
@@ -43,7 +44,7 @@ const Cart: FunctionComponent = () => {
       <CartEscapeArea onClick={handleScapeAreaClick} />
       <CartContent>
         <CartTitle>Seu Carrinho</CartTitle>
-        {products.map((product) => (
+        {products.map((product: CartProduct) => (
           <CartItem product={product} key={product.id} />
         ))}
         {productsCount > 0 && (

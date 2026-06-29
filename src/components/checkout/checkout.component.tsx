@@ -16,6 +16,7 @@ import {
   CheckoutTitle,
   CheckoutTotal
 } from './checkout.styles'
+import CartProduct from '../../types/cart.types'
 
 const Checkout: FunctionComponent = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -46,7 +47,7 @@ const Checkout: FunctionComponent = () => {
       {products.length > 0 ? (
         <>
           <CheckoutProducts>
-            {products.map((product) => (
+            {products.map((product: CartProduct) => (
               <CartItem key={product.id} product={product} />
             ))}
           </CheckoutProducts>
